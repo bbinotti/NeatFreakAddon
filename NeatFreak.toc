@@ -1,0 +1,5 @@
+## Interface: 50400
+## Title: NeatFreak
+## Notes: Keeps bags/bank organized and allows multiple items to be moved at once.
+NeatFreak.lua
+NeatFreak.xml

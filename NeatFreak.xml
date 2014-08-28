@@ -1,0 +1,37 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" 
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+                   xsi:schemaLocation="http://www.blizzard.com/wow/ui/ 
+                   ..\..\FrameXML\UI.xsd">
+  <Script File="NeatFreak.lua"/>
+  
+  <Frame name="NeatFreakFrame">
+  
+   
+   <Scripts>
+    <OnLoad>
+     NeatFreak();
+	 self:RegisterEvent("ITEM_LOCKED");
+	 self:RegisterEvent("BAG_UPDATE");
+	 self:RegisterEvent("BANKFRAME_OPENED");
+	 self:RegisterEvent("BANKFRAME_CLOSED");
+    </OnLoad>
+	<OnEvent>
+		if event == "BANKFRAME_OPENED" then
+			BANK = true
+			print("OPEN")
+		elseif event == "BANKFRAME_CLOSED" then
+			BANK = false
+		elseif event == "BAG_UPDATE" then
+			containerId = select(1,...);
+			moveMult(containerId);
+		elseif event == "ITEM_LOCKED" then
+			if MOVEFLAG then
+				bagId = select(1,...); slotId = select(2,...);
+				blockSelect(bagId, slotId);
+			end
+		end
+	</OnEvent>
+   </Scripts>
+  </Frame>
+  
+</Ui>
